@@ -1,0 +1,20 @@
+<div class="filters">
+    <input type="text" placeholder="Buscar (nombre, tags, descripción)..." [ngModel]="q"
+        (ngModelChange)="onQ($event)" />
+
+    <select [ngModel]="brand" (ngModelChange)="onBrand($event)">
+        <option value="all">Todas las marcas</option>
+        @for (b of brands; track b.id) { <option [value]="b.id">{{ b.name }}</option> }
+    </select>
+
+    <select [ngModel]="category" (ngModelChange)="onCategory($event)">
+        <option value="all">Todas las categorías</option>
+        @for (c of categories; track c.id) { <option [value]="c.id">{{ c.name }}</option> }
+    </select>
+
+    <select [ngModel]="order" (ngModelChange)="onOrder($event)">
+        <option value="release_desc">Novedad</option>
+        <option value="price_asc">Precio ↑</option>
+        <option value="price_desc">Precio ↓</option>
+    </select>
+</div>

@@ -1,0 +1,22 @@
+<a class="card" [routerLink]="['/catalog/device', device.id]">
+    @if (device.images.length) {
+    <img [src]="device.images[0]" [alt]="device.name" />
+    } @else {
+    <div class="img-placeholder">Sin imagen</div>
+    }
+
+    <div class="card-body">
+        <h3 class="name">{{ device.name }}</h3>
+        @if (device.priceCOP) {
+        <div class="price">{{ device.priceCOP | number:'1.0-0' }} COP</div>
+        }
+        @if (device.releaseDate) {
+        <small class="meta">Lanzamiento: {{ device.releaseDate }}</small>
+        }
+        @if (device.tags?.length) {
+        <div class="tags">
+            @for (t of device.tags; track $index) { <span>{{ t }}</span> }
+        </div>
+        }
+    </div>
+</a>

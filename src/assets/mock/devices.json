@@ -1,0 +1,46 @@
+[
+    {
+        "id": "ph-001",
+        "name": "Pixel 9",
+        "brandId": "google",
+        "categoryId": "phone",
+        "releaseDate": "2024-10-10",
+        "priceCOP": 3499000,
+        "specs": {
+            "cpu": "Tensor G4",
+            "ram": "8GB",
+            "storage": "128GB",
+            "display": "6.2\" OLED 120Hz"
+        },
+        "images": [
+            "assets/images/pixel9-front.jpg"
+        ],
+        "tags": [
+            "5G",
+            "Android 15"
+        ],
+        "description": "Gama alta con cámara computacional."
+    },
+    {
+        "id": "lp-001",
+        "name": "ThinkPad X1 Carbon Gen 12",
+        "brandId": "lenovo",
+        "categoryId": "laptop",
+        "releaseDate": "2025-02-15",
+        "priceCOP": 7999000,
+        "specs": {
+            "cpu": "Intel Core Ultra 7",
+            "ram": "16GB",
+            "storage": "512GB SSD",
+            "display": "14\" 2.8K"
+        },
+        "images": [
+            "assets/images/x1c12.jpg"
+        ],
+        "tags": [
+            "Ultrabook",
+            "Ligera"
+        ],
+        "description": "Portátil premium ultraligera."
+    }
+]

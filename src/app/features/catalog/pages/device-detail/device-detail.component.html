@@ -1,0 +1,30 @@
+@if (device) {
+<div class="detail">
+    <h2>{{ device.name }}</h2>
+
+    @if (device.images.length) {
+    <div class="gallery">
+        @for (img of device.images; track $index) {
+        <img [src]="img" [alt]="device.name" />
+        }
+    </div>
+    }
+
+    <p class="desc">{{ device.description }}</p>
+
+    <h3>Especificaciones</h3>
+
+    @if (device.specs) {
+    <table>
+        @for (kv of device.specs | keyvalue; track kv.key) {
+        <tr>
+            <td class="k">{{ kv.key }}</td>
+            <td class="v">{{ kv.value }}</td>
+        </tr>
+        }
+    </table>
+    }
+</div>
+} @else {
+<div class="empty">Dispositivo no encontrado.</div>
+}

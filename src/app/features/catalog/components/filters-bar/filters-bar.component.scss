@@ -1,0 +1,18 @@
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 200px 200px 160px;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    input,
+    select {
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: .95rem;
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,47 @@
+.detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+        margin: 12px 0 16px;
+
+        img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            background: #fafafa;
+        }
+    }
+
+    .desc {
+        margin: 8px 0 16px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        td {
+            border: 1px solid #eee;
+            padding: 8px 10px;
+        }
+
+        .k {
+            width: 30%;
+            font-weight: 600;
+            background: #fafafa;
+        }
+    }
+}
+
+.empty {
+    text-align: center;
+    padding: 48px 0;
+    color: #777;
+}

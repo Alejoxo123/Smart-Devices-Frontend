@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Catálogo de Dispositivos</h1>
+
+    <app-filters-bar [brands]="brands" [categories]="categories" [q]="q" [brand]="brand" [category]="category"
+        [order]="order" (qChange)="q=$event; apply()" (brandChange)="brand=$event; apply()"
+        (categoryChange)="category=$event; apply()" (orderChange)="onOrderChange($event)" />
+
+    @if (filtered.length) {
+    <div class="grid">
+        @for (d of filtered; track d.id) {
+        <app-device-card [device]="d"></app-device-card>
+        }
+    </div>
+    } @else {
+    <div class="empty" style="padding:24px;color:#666">
+        No hay dispositivos para mostrar.
+    </div>
+    }
+</div>

@@ -1,0 +1,151 @@
+<div class="admin">
+    <h1>Administración de Dispositivos (UI – Mock)</h1>
+
+    <div class="layout">
+        <!-- FORM -->
+        <form class="panel form" (ngSubmit)="$event.preventDefault()">
+            <h2>Nuevo dispositivo</h2>
+
+            <div class="grid">
+                <label class="field">
+                    <span>Nombre *</span>
+                    <input type="text" [(ngModel)]="form.name" name="name"
+                        placeholder="Ej: Pixel 9, ThinkPad X1 Carbon..." required />
+                </label>
+
+                <label class="field">
+                    <span>Marca *</span>
+                    <select [(ngModel)]="form.brandId" name="brandId" required>
+                        <option value="" disabled selected>Selecciona una marca</option>
+                        <option *ngFor="let b of brands" [value]="b.id">{{ b.name }}</option>
+                    </select>
+                </label>
+
+                <label class="field">
+                    <span>Categoría *</span>
+                    <select [(ngModel)]="form.categoryId" name="categoryId" required>
+                        <option value="" disabled selected>Selecciona una categoría</option>
+                        <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+                    </select>
+                </label>
+
+                <label class="field">
+                    <span>Fecha lanzamiento</span>
+                    <input type="date" [(ngModel)]="form.releaseDate" name="releaseDate" />
+                </label>
+
+                <label class="field">
+                    <span>Precio (COP)</span>
+                    <input type="number" min="0" step="1000" [(ngModel)]="form.priceCOP" name="priceCOP"
+                        placeholder="0" />
+                </label>
+            </div>
+
+            <h3>Especificaciones</h3>
+            <div class="grid specs">
+                <label class="field">
+                    <span>CPU</span>
+                    <input type="text" [(ngModel)]="form.cpu" name="cpu"
+                        placeholder="Ej: Intel Core Ultra 7 / Tensor G4" />
+                </label>
+                <label class="field">
+                    <span>RAM</span>
+                    <input type="text" [(ngModel)]="form.ram" name="ram" placeholder="Ej: 8GB, 16GB" />
+                </label>
+                <label class="field">
+                    <span>Almacenamiento</span>
+                    <input type="text" [(ngModel)]="form.storage" name="storage" placeholder="Ej: 128GB, 512GB SSD" />
+                </label>
+                <label class="field">
+                    <span>Pantalla</span>
+                    <input type="text" [(ngModel)]="form.display" name="display"
+                        placeholder="Ej: 14&quot; 2.8K / 6.2&quot; OLED 120Hz" />
+                </label>
+                <label class="field">
+                    <span>Batería</span>
+                    <input type="text" [(ngModel)]="form.battery" name="battery" placeholder="Ej: 5000 mAh" />
+                </label>
+                <label class="field">
+                    <span>Sistema operativo</span>
+                    <input type="text" [(ngModel)]="form.os" name="os" placeholder="Ej: Android 15 / Windows 11" />
+                </label>
+            </div>
+
+            <label class="field">
+                <span>Descripción</span>
+                <textarea rows="3" [(ngModel)]="form.description" name="description"
+                    placeholder="Resumen del equipo..."></textarea>
+            </label>
+
+            <div class="grid">
+                <label class="field">
+                    <span>Tags (separados por coma)</span>
+                    <input type="text" [(ngModel)]="form.tagsInput" name="tagsInput"
+                        placeholder="Ej: 5G, Ultrabook, Ligera" />
+                </label>
+
+                <label class="field">
+                    <span>Imágenes (rutas separadas por coma)</span>
+                    <input type="text" [(ngModel)]="form.imagesInput" name="imagesInput"
+                        placeholder="Ej: assets/images/foto1.jpg, assets/images/foto2.jpg" />
+                </label>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn primary" (click)="copyToClipboard()"
+                    [disabled]="!form.name || !form.brandId || !form.categoryId"
+                    title="Copia el JSON del dispositivo (para pegar en devices.json)">
+                    Copiar JSON
+                </button>
+
+                <button type="button" class="btn" (click)="downloadJson()"
+                    [disabled]="!form.name || !form.brandId || !form.categoryId" title="Descarga el JSON como archivo">
+                    Descargar JSON
+                </button>
+
+                <button type="button" class="btn ghost" (click)="resetForm()">Limpiar</button>
+            </div>
+
+            <div class="hint">
+                <strong>Nota:</strong> Para esta entrega, pega el JSON en
+                <code>src/assets/mock/devices.json</code> o guarda el archivo y luego lo agregas.
+            </div>
+
+            <div class="toast" *ngIf="copied">¡Copiado al portapapeles!</div>
+        </form>
+
+        <!-- PREVIEW -->
+        <div class="panel preview">
+            <h2>Vista previa</h2>
+
+            <div class="card">
+                <div class="card-media">
+                    <div class="badge" *ngIf="devicePreview.categoryId">{{ devicePreview.categoryId }}</div>
+                    <img *ngIf="devicePreview.images?.length" [src]="devicePreview.images[0]"
+                        alt="{{ devicePreview.name }}" />
+                    <div class="placeholder" *ngIf="!devicePreview.images?.length">Sin imagen</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>{{ devicePreview.name || 'Nombre del dispositivo' }}</h3>
+                    <div class="meta">
+                        <span>Marca: <b>{{ devicePreview.brandId || '—' }}</b></span>
+                        <span>Lanzamiento: <b>{{ devicePreview.releaseDate || '—' }}</b></span>
+                    </div>
+                    <div class="price" *ngIf="devicePreview.priceCOP">
+                        {{ devicePreview.priceCOP | number:'1.0-0' }} COP
+                    </div>
+
+                    <div class="tags" *ngIf="devicePreview.tags?.length">
+                        <span *ngFor="let t of devicePreview.tags">{{ t }}</span>
+                    </div>
+
+                    <p class="desc" *ngIf="devicePreview.description">{{ devicePreview.description }}</p>
+                </div>
+            </div>
+
+            <h3>JSON generado</h3>
+            <pre class="code"><code>{{ previewJson }}</code></pre>
+        </div>
+    </div>
+</div>

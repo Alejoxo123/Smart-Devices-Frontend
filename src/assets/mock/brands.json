@@ -1,0 +1,18 @@
+[
+    {
+        "id": "google",
+        "name": "Google"
+    },
+    {
+        "id": "lenovo",
+        "name": "Lenovo"
+    },
+    {
+        "id": "samsung",
+        "name": "Samsung"
+    },
+    {
+        "id": "apple",
+        "name": "Apple"
+    }
+]

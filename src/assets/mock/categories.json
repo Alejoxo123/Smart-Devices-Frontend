@@ -1,0 +1,14 @@
+[
+    {
+        "id": "phone",
+        "name": "Celular"
+    },
+    {
+        "id": "laptop",
+        "name": "Portátil"
+    },
+    {
+        "id": "tablet",
+        "name": "Tablet"
+    }
+]
