@@ -1,4 +1,4 @@
-# 📱 Smart-Devices FrontEnd
+# 📱 SmartDevices - FrontEnd
 
 Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión **20.2.0**.
 
